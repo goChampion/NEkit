@@ -9,7 +9,7 @@ open class AdapterFactory {
 
      - returns: The built adapter.
      */
-    open func getAdapterFor(session: ConnectSession) -> AdapterSocket {
+    func getAdapterFor(session: ConnectSession) -> AdapterSocket {
         return getDirectAdapter()
     }
 
@@ -18,7 +18,7 @@ open class AdapterFactory {
 
      - returns: A direct adapter.
      */
-    public func getDirectAdapter() -> AdapterSocket {
+    func getDirectAdapter() -> AdapterSocket {
         let adapter = DirectAdapter()
         adapter.socket = RawSocketFactory.getRawSocket()
         return adapter
