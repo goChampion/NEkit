@@ -205,7 +205,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
      - parameter tlsSettings: TLS settings, refer to documents of `GCDAsyncSocket` for detail.
      */
     func startTLSWith(settings: [AnyHashable: Any]!) {
-        if let settings = settings as? [String: NSObject] {
+        if let settings = settings as? [String: NSNumber] {
             socket.startTLS(settings)
         } else {
             socket.startTLS(nil)

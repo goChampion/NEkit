@@ -10,7 +10,7 @@ open class AdapterSocket: NSObject, SocketProtocol, RawTCPSocketDelegate {
     }
 
     internal var _cancelled = false
-    public var isCancelled: Bool {
+    var isCancelled: Bool {
         return _cancelled
     }
 
@@ -19,7 +19,7 @@ open class AdapterSocket: NSObject, SocketProtocol, RawTCPSocketDelegate {
 
      - parameter session: The connect session.
      */
-    open func openSocketWith(session: ConnectSession) {
+    func openSocketWith(session: ConnectSession) {
         guard !isCancelled else {
             return
         }
@@ -31,10 +31,6 @@ open class AdapterSocket: NSObject, SocketProtocol, RawTCPSocketDelegate {
         _status = .connecting
     }
 
-    deinit {
-        socket?.delegate = nil
-    }
-    
     // MARK: SocketProtocol Implementation
 
     /// The underlying TCP socket transmitting data.

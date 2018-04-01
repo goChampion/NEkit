@@ -23,7 +23,7 @@ open class ProxyServer: NSObject, TunnelDelegate {
 
     /// The description of proxy server.
     open override var description: String {
-        return "<\(type) address:\(String(describing: address)) port:\(port)>"
+        return "<\(type) address:\(address) port:\(port)>"
     }
 
     open var observer: Observer<ProxyServerEvent>?
@@ -41,7 +41,7 @@ open class ProxyServer: NSObject, TunnelDelegate {
     public init(address: IPAddress?, port: Port) {
         self.address = address
         self.port = port
-        type = "\(Swift.type(of: self))"
+        type = "\(type(of: self))"
 
         super.init()
 

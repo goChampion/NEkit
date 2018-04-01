@@ -227,8 +227,8 @@ open class IPPacket {
 
         switch version {
         case .iPv4:
-            sourceAddress = IPAddress(ipv4InNetworkOrder: CFSwapInt32(scanner.read32()!))
-            destinationAddress = IPAddress(ipv4InNetworkOrder: CFSwapInt32(scanner.read32()!))
+            sourceAddress = IPAddress(ipv4InNetworkOrder: scanner.read32()!)
+            destinationAddress = IPAddress(ipv4InNetworkOrder: scanner.read32()!)
         default:
             // IPv6 is not supported yet.
             DDLogWarn("IPv6 is not supported yet.")
@@ -256,7 +256,7 @@ open class IPPacket {
             result += address.UInt32InNetworkOrder! >> 16 + address.UInt32InNetworkOrder! & 0xFFFF
         }
         result += UInt32(transportProtocol.rawValue) << 8
-        result += CFSwapInt32(UInt32(protocolParser.bytesLength))
+        result += UInt32(protocolParser.bytesLength)
         return result
     }
 
@@ -280,7 +280,6 @@ open class IPPacket {
         protocolParser.packetData = packetData
         protocolParser.offset = Int(headerLength)
         protocolParser.buildSegment(computePseudoHeaderChecksum())
-        packetData = protocolParser.packetData
 
         setPayloadWithUInt16(Checksum.computeChecksum(packetData, from: 0, to: Int(headerLength)), at: 10, swap: false)
     }

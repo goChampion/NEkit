@@ -10,7 +10,7 @@ public protocol DNSResolverDelegate: class {
     func didReceive(rawResponse: Data)
 }
 
-open class UDPDNSResolver: DNSResolverProtocol, NWUDPSocketDelegate {
+public class UDPDNSResolver: DNSResolverProtocol, NWUDPSocketDelegate {
     let socket: NWUDPSocket
     public weak var delegate: DNSResolverDelegate?
 

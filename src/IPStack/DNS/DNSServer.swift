@@ -202,7 +202,7 @@ open class DNSServer: DNSResolverDelegate, IPStackProtocol {
 
     func lookupFakeIP(_ address: IPAddress) -> DNSSession? {
         var session: DNSSession?
-        QueueFactory.executeOnQueueSynchronizedly {
+        queue.sync {
             session = self.fakeSessions[address]
         }
         return session

@@ -96,10 +96,10 @@ public class IPAddress: CustomStringConvertible, Hashable, Comparable {
     public convenience init(fromBytesInNetworkOrder ptr: UnsafeRawPointer, family: Family = .IPv4) {
         switch family {
         case .IPv4:
-            let addr = ptr.assumingMemoryBound(to: in_addr.self).pointee
+            let addr = ptr.load(as: in_addr.self)
             self.init(fromInAddr: addr)
         case .IPv6:
-            let addr6 = ptr.assumingMemoryBound(to: in6_addr.self).pointee
+            let addr6 = ptr.load(as: in6_addr.self)
             self.init(fromIn6Addr: addr6)
         }
     }
