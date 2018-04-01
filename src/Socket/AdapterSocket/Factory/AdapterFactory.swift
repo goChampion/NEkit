@@ -2,6 +2,7 @@ import Foundation
 
 /// The base class of adapter factory.
 open class AdapterFactory {
+    public init() {}
     /**
      Build an adapter.
 
@@ -9,7 +10,7 @@ open class AdapterFactory {
 
      - returns: The built adapter.
      */
-    func getAdapterFor(session: ConnectSession) -> AdapterSocket {
+    open func getAdapterFor(session: ConnectSession) -> AdapterSocket {
         return getDirectAdapter()
     }
 
@@ -18,7 +19,7 @@ open class AdapterFactory {
 
      - returns: A direct adapter.
      */
-    func getDirectAdapter() -> AdapterSocket {
+    open func getDirectAdapter() -> AdapterSocket {
         let adapter = DirectAdapter()
         adapter.socket = RawSocketFactory.getRawSocket()
         return adapter
